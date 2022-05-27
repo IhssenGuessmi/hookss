@@ -4,6 +4,8 @@ import AddMovie from './components/AddMovie';
 import MovieList from './components/MovieList';
 import NavBar from './components/NavBar';
 import Search from './components/Search';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import TrailerCard from './components/TrailerCard';
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         posterUrl:
           "https://m.media-amazon.com/images/M/MV5BYzFmMjAwMDYtNzM0Zi00NjY2LWFjMjYtMGQ1OTRiZjk5YjJkXkEyXkFqcGdeQXVyMTMwODY5NDc2._V1_.jpg",
         rate: 5,
+        frameUrl: "https://www.youtube.com/embed/2docezZl574",
         id: 1
       },
       {
@@ -24,6 +27,7 @@ function App() {
         posterUrl:
           "https://musicart.xboxlive.com/7/2ab25100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080",
         rate: 3,
+        frameUrl:'https://www.youtube.com/embed/ATJYac_dORw',
         id: 2
       },
       {
@@ -33,6 +37,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/6/66/Weathering_with_You_Poster.jpg",
         rate: 5,
+        frameUrl:'https://www.youtube.com/embed/Q6iK6DjV_iE',
         id:3
       },
       {
@@ -42,6 +47,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/Your_Name_poster.png/220px-Your_Name_poster.png",
         rate: 2,
+        frameUrl:'https://www.youtube.com/embed/xU47nhruN-Q',
         id: 4
       },
       {
@@ -51,6 +57,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/3/32/A_Silent_Voice_Film_Poster.jpg",
         rate: 1,
+        frameUrl:'https://www.youtube.com/embed/nfK6UgLra7g',
         id:5
       },
       {
@@ -60,6 +67,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Nakitai_Watashi_wa_Neko_o_Kaburu_poster.png/220px-Nakitai_Watashi_wa_Neko_o_Kaburu_poster.png",
         rate: 5,
+        frameUrl:'https://www.youtube.com/embed/aXc9DVfLTGo',
         id:6
       },
       {
@@ -68,6 +76,7 @@ function App() {
           "The strongest Hunters that once existed in the Hunter Association were split into light and dark, and each walked down their respective paths. The dark side begins moving in order to massacre all Hunters! After a brutal attack from the dark side Hunters, Killua is injured and Kurapika is almost dead. What is the real goal behind the attack on all the Hunters?",
         posterUrl: "https://upload.wikimedia.org/wikipedia/en/b/b3/Hunter_x_Hunter_The_Last_Mission_poster.png?20180131220619",
         rate: 4,
+        frameUrl:'https://www.youtube.com/embed/d6kBeJjTGnY',
         id:7
       },
       {
@@ -77,6 +86,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Garden_of_Words_poster.png/220px-Garden_of_Words_poster.png",
         rate: 1,
+        frameUrl:'https://www.youtube.com/embed/KoA4vYlfoc4',
         id:8
       },
       {
@@ -86,6 +96,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/7/7d/Summer_Wars_poster.jpg/220px-Summer_Wars_poster.jpg",
         rate: 2,
+        frameUrl:'https://www.youtube.com/embed/UbmdYasVDDg',
         id:9
       },
       {
@@ -95,6 +106,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/d/de/Your_Lie_in_April_Manga_cover.png/220px-Your_Lie_in_April_Manga_cover.png",
         rate: 3,
+        frameUrl:'https://www.youtube.com/embed/3aL0gDZtFbE',
         id:10
       },
       {
@@ -104,6 +116,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Seishun_Buta_Yar%C5%8D_light_novel_volume_1_cover.jpg/220px-Seishun_Buta_Yar%C5%8D_light_novel_volume_1_cover.jpg",
         rate: 4,
+        frameUrl:'https://www.youtube.com/embed/o0TZj_d3Yfg',
         id:11
       },
       {
@@ -113,6 +126,7 @@ function App() {
         posterUrl:
           "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Violet_Evergarden_light_novel_volume_1_cover.jpg/220px-Violet_Evergarden_light_novel_volume_1_cover.jpg",
         rate: 3,
+        frameUrl:'https://www.youtube.com/embed/BUfSen2rYQs',
         id:12
       }      
     
@@ -133,12 +147,22 @@ setRate(rate);
 }
 
   return (
+    <BrowserRouter>
     <div className="App">
+      
       <NavBar />
-      <Search getTitle={getTitle} getRate={getRate}/>
+      <Routes>
+      <Route path='/' element={<> <Search getTitle={getTitle} getRate={getRate}/>
       <MovieList Movies= {Movies} title={title} rate={rate} />
       <AddMovie addMovie={addMovie}/>
+      </>
+    }/>
+      <Route path='/trailercard/:id' element={<TrailerCard Movies={Movies} />} />
+      
+      </Routes>
+
     </div>
+    </BrowserRouter>
   );
 }
 

@@ -32,7 +32,7 @@ const handleAdd = ()=> {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Enter your Movie</Modal.Title>
         </Modal.Header>
         <Modal.Body> 
         <Form  >
