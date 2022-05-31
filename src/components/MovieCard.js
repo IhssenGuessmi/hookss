@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card , Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import TrailerCard from './TrailerCard';
+
 
 
 
@@ -16,7 +16,7 @@ export default function MovieCard ( {movie} ) {
       {movie.description}.
     </Card.Text>
     <Link to={`/trailercard/${movie.id}`}>
-    <Button variant="primary" onClick={<TrailerCard/>}>watch the movie</Button>
+    <Button variant="primary">watch the movie</Button>
     </Link>
   </Card.Body>
 </Card>
